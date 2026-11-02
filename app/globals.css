@@ -1,0 +1,115 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+
+/* Fundora brand: warm orange accent + deep navy surfaces (see design reference). */
+:root,
+[data-theme="light"] {
+  --accent: #ee7a1c;
+  /* Dark navy text on the bright orange gives ~6:1 contrast (white would be only 2.8:1). */
+  --accent-foreground: #0f1d3a;
+  /* Orange used as TEXT colour on light surfaces must be darker to reach AA. */
+  --accent-ink: #a8480a;
+  --muted: #596273;
+  --background: #f5f7fc;
+  --foreground: #14213d;
+  --navy: #0f1d3a;
+  --navy-foreground: #e7ecf7;
+  --success: #1fa971;
+  --warning: #b26a00;
+  --danger: #c53035;
+  --radius: 0.75rem;
+}
+
+.dark,
+[data-theme="dark"] {
+  --accent: #f58a2e;
+  --accent-foreground: #1a1206;
+  --accent-ink: #f58a2e;
+  --muted: #a4abbb;
+  --danger: #ff6b70;
+  --danger-foreground: #240808;
+  --warning: #f5a524;
+  --background: #0b1226;
+  --foreground: #e7ecf7;
+  --navy: #070d1d;
+  --navy-foreground: #e7ecf7;
+}
+
+@theme inline {
+  --color-accent-ink: var(--accent-ink);
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
+  --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+}
+
+html {
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Swiper theming: hero controls sit on dark imagery, testimonials on the page surface. */
+.hero-swiper {
+  --swiper-theme-color: #ffffff;
+  --swiper-navigation-color: #ffffff;
+  --swiper-navigation-size: 26px;
+  --swiper-pagination-bullet-inactive-color: #ffffff;
+  --swiper-pagination-bullet-inactive-opacity: 0.55;
+  --swiper-pagination-bullet-size: 10px;
+  --swiper-pagination-bullet-horizontal-gap: 5px;
+}
+
+.hero-swiper .swiper-button-prev,
+.hero-swiper .swiper-button-next {
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.18);
+  backdrop-filter: blur(6px);
+}
+
+.hero-swiper .swiper-button-prev::after,
+.hero-swiper .swiper-button-next::after {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+@media (max-width: 639px) {
+  .hero-swiper .swiper-button-prev,
+  .hero-swiper .swiper-button-next {
+    display: none;
+  }
+}
+
+.testimonial-swiper {
+  --swiper-theme-color: var(--accent);
+  --swiper-pagination-bullet-inactive-color: var(--foreground);
+  --swiper-pagination-bullet-inactive-opacity: 0.25;
+}
+
+/* HeroUI's secondary button text is a mid orange-brown (about 4:1 on light grey); use the accessible ink colour. */
+.button--secondary {
+  color: var(--accent-ink);
+}
